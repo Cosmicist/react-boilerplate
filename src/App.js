@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router } from '@reach/router'
+import { globalHistory, Router } from '@reach/router'
 import { pick } from '@reach/router/lib/utils'
 import routes from './routes'
 import Layout from './Layout'
@@ -12,6 +12,11 @@ export default class App extends React.PureComponent {
   initialPropsByRoute = {}
 
   componentDidMount () {
+    this.runGetInitialProps()
+    globalHistory.listen(this.runGetInitialProps)
+  }
+
+  runGetInitialProps = () => {
     this.getInitialProps().then(currentInitialProps => this.setState({ currentInitialProps }))
   }
 
