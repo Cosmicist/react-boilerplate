@@ -4,6 +4,7 @@ import { pick } from '@reach/router/lib/utils'
 import Home from './pages/Home'
 import Corset from './pages/Corset'
 import routes from './routes'
+import Layout from './Layout'
 
 export default class App extends React.PureComponent {
   state = {
@@ -33,7 +34,9 @@ export default class App extends React.PureComponent {
     const { currentInitialProps } = this.state
     return (
       <Router>
-        {routes.map(({ path, component: C }) => <C key={path} path={path} {...this.props} {...currentInitialProps} />)}
+        <Layout path={'/'}>
+          {routes.map(({ path, component: C }) => <C key={path} path={path} {...this.props} {...currentInitialProps} />)}
+        </Layout>
       </Router>
     )
   }
