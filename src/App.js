@@ -1,8 +1,6 @@
 import React from 'react'
 import { Router } from '@reach/router'
 import { pick } from '@reach/router/lib/utils'
-import Home from './pages/Home'
-import Corset from './pages/Corset'
 import routes from './routes'
 import Layout from './Layout'
 
@@ -14,19 +12,23 @@ export default class App extends React.PureComponent {
   initialPropsByRoute = {}
 
   componentDidMount () {
+    this.getInitialProps().then(currentInitialProps => this.setState({ currentInitialProps }))
+  }
+
+  async getInitialProps () {
     const path = window.location.pathname
     const matched = pick(routes, path)
 
     if (matched && matched.route) {
-      const { route } = matched
+      const { component } = matched.route
       const initialPropsForPath = this.initialPropsByRoute[path]
-      if (initialPropsForPath) {
-        this.setState({ currentInitialProps: initialPropsForPath })
-      } else if (route.component.getInitialProps) {
-        route.component.getInitialProps({ path }).then(currentInitialProps => {
-          this.setState({ currentInitialProps })
-        })
-      }
+      return initialPropsForPath ||
+        (component.getInitialProps && await component.getInitialProps({
+          params: matched.params,
+          path: matched.route.path,
+          uri: matched.uri
+        })) ||
+        {}
     }
   }
 

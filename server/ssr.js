@@ -9,7 +9,7 @@ router.get('*', (req, res, next) => {
   const matched = pick(routes, req.url)
 
   if (matched && matched.route) {
-    getInitialProps(matched.route.component)
+    getInitialProps(matched)
       .then(renderApp(req, res))
       .catch(next)
   }
