@@ -6,26 +6,34 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --mode development"
+    "build": "webpack && babel server -d dist",
+    "start": "node dist/index.js",
+    "dev": "NODE_ENV=development nodemon server/index.js --exec babel-node"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.2",
-    "standard": "^12.0.1",
-    "webpack": "^4.19.1",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
+    "nodemon": "^1.18.4",
+    "standard": "^12.0.1"
   },
   "dependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@reach/router": "^1.2.0",
+    "babel-loader": "^8.0.2",
+    "express": "^4.16.3",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-hot-loader": "^4.3.11",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-middleware": "^3.3.0",
     "webpack-node-externals": "^1.7.2"
   }
 }
