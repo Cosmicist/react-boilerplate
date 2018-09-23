@@ -1,5 +1,5 @@
 import Home from './pages/Home'
-import Corset from './pages/Corset'
+import Profile from './pages/Profile'
 
 export default [
   {
@@ -7,7 +7,7 @@ export default [
     component: Home
   },
   {
-    path: '/corset/:corsetSlug',
-    component: Corset
+    path: '/profile/:profileSlug',
+    component: Profile
   }
 ]
