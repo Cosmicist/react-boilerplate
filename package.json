@@ -1,14 +1,13 @@
 {
   "name": "bluerabbit-corsets",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Luciano Longo <luciano.longo@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack && babel server -d dist",
-    "start": "node dist/index.js",
-    "dev": "NODE_ENV=development nodemon server/index.js --exec babel-node"
+    "build": "webpack && babel src -d dist",
+    "start": "node dist/server.js",
+    "dev": "NODE_ENV=development nodemon src/server.js --exec babel-node"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",

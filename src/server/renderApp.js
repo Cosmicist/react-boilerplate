@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { isRedirect, ServerLocation } from '@reach/router'
 import serialize from 'serialize-javascript'
-import Document from '../src/Document'
-import App from '../src/App'
+import Document from '../Document'
+import App from '../App'
 
 export default function renderApp (req, res) {
   return initialProps => {

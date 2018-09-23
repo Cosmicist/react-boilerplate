@@ -1,6 +1,6 @@
 import path from 'path'
 import express from 'express'
-import router from './ssr'
+import router from './server/ssr'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import config from '../webpack.config'

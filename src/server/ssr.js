@@ -1,6 +1,6 @@
 import express from 'express'
 import { pick } from '@reach/router/lib/utils'
-import routes from '../src/routes'
+import routes from '../routes'
 import getInitialProps from './getInitialProps'
 import renderApp from './renderApp'
 
