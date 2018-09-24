@@ -12,8 +12,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(webpackDevMiddleware(webpack(config), {
-    publicPath: config.output.publicPath,
-    logLevel: 'warn'
+    publicPath: config.output.publicPath
   }))
 }
 
