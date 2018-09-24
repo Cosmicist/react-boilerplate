@@ -5,11 +5,14 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import config from '../webpack.config'
 import cors from 'cors'
+import morgan from 'morgan'
 
+const isDev = process.env.NODE_ENV === 'development'
 const port = process.env.PORT || 3000
 const app = express()
 
 app.use(cors())
+isDev && app.use(morgan('dev'))
 
 app.use(express.static(path.join(__dirname, '../public')));
 
