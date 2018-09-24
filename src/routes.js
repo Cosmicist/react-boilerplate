@@ -1,13 +1,20 @@
-import Home from './pages/Home'
-import Profile from './pages/Profile'
+import React from 'react'
+import Loading from './components/loading/Loading'
+import asyncComponent from './utils/asyncComponent'
 
 export default [
   {
     path: '/',
-    component: Home
+    component: asyncComponent({
+      loader: () => import('./pages/Home'),
+      Loading
+    })
   },
   {
     path: '/profile/:profileSlug',
-    component: Profile
+    component: asyncComponent({
+      loader: () => import('./pages/Profile'),
+      Loading
+    })
   }
 ]

@@ -3,6 +3,7 @@ import { globalHistory, Router } from '@reach/router'
 import { pick } from '@reach/router/lib/utils'
 import routes from './routes'
 import Layout from './Layout'
+import getInitialProps from './utils/getInitialProps'
 
 export default class App extends React.PureComponent {
   state = {
@@ -25,15 +26,8 @@ export default class App extends React.PureComponent {
     const matched = pick(routes, path)
 
     if (matched && matched.route) {
-      const { component } = matched.route
       const initialPropsForPath = this.initialPropsByRoute[path]
-      return initialPropsForPath ||
-        (component.getInitialProps && await component.getInitialProps({
-          params: matched.params,
-          path: matched.route.path,
-          uri: matched.uri
-        })) ||
-        {}
+      return initialPropsForPath || await getInitialProps(matched) || {}
     }
   }
 

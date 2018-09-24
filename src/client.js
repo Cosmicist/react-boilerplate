@@ -1,10 +1,11 @@
 import React from 'react'
 import { hydrate } from 'react-dom'
 import App from './App'
+import ensureReady from './utils/ensureReady'
 
-const initialProps = window.__initialProps__
-
-hydrate(
-  <App {...initialProps} />,
-  document.getElementById('app')
-)
+ensureReady().then(initialProps => {
+  hydrate(
+    <App {...initialProps} />,
+    document.getElementById('app')
+  )
+})

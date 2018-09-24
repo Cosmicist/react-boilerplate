@@ -5,7 +5,8 @@ module.exports = {
   entry: './src/client.js',
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/'
   },
   mode: 'development',
@@ -15,7 +16,7 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: ['babel-loader']
-      },
+      }
     ]
   },
   resolve: {
@@ -25,7 +26,6 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 }

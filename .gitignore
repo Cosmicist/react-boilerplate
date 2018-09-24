@@ -2,5 +2,7 @@ node_modules
 public
 dist
 
+yarn-error.log
+
 # IDE files
 .idea
