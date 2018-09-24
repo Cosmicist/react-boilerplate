@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import Helmet from 'react-helmet'
 import { isRedirect, ServerLocation } from '@reach/router'
 import serialize from 'serialize-javascript'
 import Document from '../Document'
@@ -10,12 +11,15 @@ export default function renderApp (req, res) {
     try {
       const html = ReactDOMServer.renderToString(
         <ServerLocation url={req.url}>
-          <Document>
-            <App {...initialProps} />
-          </Document>
+          <App {...initialProps} />
         </ServerLocation>
       )
-      res.send(html.replace('@@INITIAL_PROPS@@', serialize(initialProps)))
+
+      const document = ReactDOMServer.renderToString(<Document helmet={Helmet.renderStatic()} />)
+        .replace('$$INITIAL_PROPS$$', serialize(initialProps))
+        .replace('$$APP_CONTENT$$', html)
+
+      res.send(`<!doctype html>${document}`)
     } catch (error) {
       if (isRedirect(error)) {
         return res.redirect(error.uri)
