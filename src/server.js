@@ -4,9 +4,12 @@ import router from './server/ssr'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import config from '../webpack.config'
+import cors from 'cors'
 
 const port = process.env.PORT || 3000
 const app = express()
+
+app.use(cors())
 
 app.use(express.static(path.join(__dirname, '../public')));
 
